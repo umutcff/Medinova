@@ -1,0 +1,35 @@
+﻿@using Medinova.ViewModels.Blog
+@model BlogUpdateVM
+
+<div class="container">
+    <div class="row">
+
+        <form method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label asp-for="Tittle"></label>
+                <input asp-for="Tittle" class="form-control" placeholder="Enter Name">
+                <span asp-validation-for="Tittle" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Image"></label>
+                <input asp-for="Image" class="form-control">
+                <span asp-validation-for="Image" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Description"></label>
+                <input asp-for="Description" class="form-control">
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="DoctorId"></label>
+                <select asp-for="DoctorId" class="form-select" asp-items="@ViewBag.Blogs"></select>
+                <span asp-validation-for="DoctorId" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>

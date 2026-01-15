@@ -1,14 +1,30 @@
 using System.Diagnostics;
+using System.Threading.Tasks;
+using Medinova.Contexts;
 using Medinova.Models;
+using Medinova.ViewModels.Blog;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Medinova.Controllers
 {
-    public class HomeController : Controller
+    //[Authorize]
+    public class HomeController(AppDbContext _context) : Controller
     {
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var item = await _context.Blogs.Select(x => new BlogGetVM()
+            {
+                Description=x.Description,
+                Tittle=x.Tittle,
+                DoctorName=x.Doctor.FullName,
+                ImagePath=x.ImagePath
+
+            }).ToListAsync();
+
+
+            return View(item);
         }
     }
 }

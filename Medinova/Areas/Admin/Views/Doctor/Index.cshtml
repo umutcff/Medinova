@@ -1,0 +1,43 @@
+﻿@using Medinova.ViewModels.Blog
+﻿
+@model List<DoctorGetVM>
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-2">
+            <a class="btn btn-success mb-2" asp-action="Create">Create</a>
+        </div>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">FullName</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var employe in Model)
+                {
+                    <tr>
+                        <th scope="row">@employe.Id</th>
+                        <td><img src="~/assets/img/@employe.ImagePath" /></td>
+                        <td>@employe.FullName</td>
+                       
+
+                        <td>
+                            <a asp-action="Update" asp-route-id="@employe.Id" class="btn btn-warning">Update</a>
+                            <a asp-action="Delete" asp-route-id="@employe.Id" class="btn btn-danger">Delete</a>
+
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+
+
+    </div>
+</div>
